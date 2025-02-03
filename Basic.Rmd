@@ -1,0 +1,58 @@
+---
+title: "Basic"
+author: "BM"
+date: "2025-02-03"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Setting environment
+
+### Load libraries
+
+```{r include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(broom)
+library(tidyverse)
+```
+
+### Set the wd
+
+```{r}
+# Actual xd
+wd <- getwd()
+print(wd)
+
+# Create a new path if needed
+data_dir <- file.path(wd,"datasets")
+print(data_dir)
+```
+
+### Import datasets
+
+```{r}
+dataframe1 <- read.csv(file.path(data_dir,"exemple.csv"),header = TRUE, sep = "," ,strip.white = TRUE,fill = TRUE)
+```
+
+# Explore data
+
+```{r}
+head(dataframe1,n=15)
+str(dataframe1)
+describe(dataframe1)
+```
+
+### Missing values
+
+```{r}
+
+#Package naniar pour la visualisation des données manquantes
+install.packages('naniar')
+# Nombre de valeurs manquantes
+colSums(is.na(dataframe1))
+
+```
